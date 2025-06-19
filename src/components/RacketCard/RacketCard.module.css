@@ -1,0 +1,50 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 220px;
+  height: 320px;
+  background-color: #fff;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.imageWrapper {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageWrapper img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.info {
+  padding: 1rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.info h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.info p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #333;
+}
