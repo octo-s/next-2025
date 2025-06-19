@@ -1,0 +1,61 @@
+.carouselWrapper {
+  position: relative;
+  margin: 2rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.slider {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.keen-slider__slide {
+  display: flex;
+  justify-content: center;
+}
+
+.arrowLeft,
+.arrowRight {
+  background-color: #3d627f;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 45px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.2s;
+  position: relative;
+}
+
+.arrowLeft:hover,
+.arrowRight:hover {
+  background-color: #3c83bb;
+}
+
+.arrowLeft {
+  margin-right: 1rem;
+}
+
+.arrowRight {
+  margin-left: 1rem;
+}
+
+.arrowLeft::before,
+.arrowRight::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.arrowLeft::before {
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
