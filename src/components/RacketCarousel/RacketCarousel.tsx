@@ -18,12 +18,9 @@ const RacketCarousel = ({ rackets }: Props) => {
     loop: true,
   });
 
-  const handlePrev = () => slider.current?.prev();
-  const handleNext = () => slider.current?.next();
-
   return (
     <div className={styles.carouselWrapper}>
-      <button className={styles.arrowLeft} onClick={handlePrev} />
+      <button className={styles.arrowLeft} onClick={() => slider.current?.prev()} />
       <div ref={sliderRef} className={`keen-slider ${styles.slider}`}>
         {rackets.map((racket) => (
           <div className="keen-slider__slide" key={racket.id}>
@@ -31,7 +28,7 @@ const RacketCarousel = ({ rackets }: Props) => {
           </div>
         ))}
       </div>
-      <button className={styles.arrowRight} onClick={handleNext} />
+      <button className={styles.arrowRight} onClick={() => slider.current?.next()} />
     </div>
   );
 };

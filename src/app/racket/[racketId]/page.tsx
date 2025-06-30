@@ -1,4 +1,6 @@
 import { rackets } from '@/data/mock';
+import { notFound } from 'next/navigation'
+import styles from './page.module.css';
 
 type RacketDetailProps = {
   params: Promise<{ racketId: string }>;
@@ -16,12 +18,14 @@ export default async function RacketDetail({ params }: RacketDetailProps) {
   const { racketId } = await params;
   const racket = rackets.find((currentRacket) => currentRacket.id === Number(racketId));
 
-  if (!racket) return <p>Ракетка не найдена</p>;
+  if (!racket) {
+    notFound()
+  }
 
   return (
     <>
       <h1>{racket.name}</h1>
-      <div style={{ display: 'flex', gap: '2rem' }}>
+      <div className={styles.imageWrapper}>
         <img src={racket.imageUrl} alt={racket.name} width="300" />
         <div>
           <p>
