@@ -16,3 +16,8 @@ type TRacket = {
   brandId: number;
   brand: TBrand;
 };
+
+export type Response<Entity> = {
+  isError: boolean;
+  data?: Entity;
+};

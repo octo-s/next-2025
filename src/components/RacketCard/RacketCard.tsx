@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Link from 'next/link';
 import styles from './RacketCard.module.css';
+import { TRacket } from '@/types/global';
 
 type Props = {
   racket: TRacket;

@@ -1,18 +1,17 @@
 import { RacketCard } from '@/components/RacketCard/RacketCard';
 import styles from './page.module.css';
-import { getRackets } from '@/services/get-rackets';
 import { notFound } from 'next/navigation';
+import { getTopRackets } from '@/services/get-top-rackets';
 
-export default async function RacketsPage() {
-  const { data: rackets } = await getRackets({ limit: 20 });
+export default async function TopPackets() {
+  const { data: rackets } = await getTopRackets();
 
   if (!rackets) {
     notFound();
   }
-
   return (
     <>
-      <h1>Ракетки</h1>
+      <h1>Ракетки - ТОП 10</h1>
       <div className={styles.itemsWrapper}>
         {rackets.map((racket) => (
           <RacketCard key={racket.id} racket={racket} />
