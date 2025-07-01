@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './loading.module.css';
+
 type LoadingProps = {
   text?: string;
 };
