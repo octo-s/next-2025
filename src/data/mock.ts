@@ -1,3 +1,5 @@
+import { TRacket } from '@/types/global';
+
 export const rackets: TRacket[] = [
   {
     id: 1,

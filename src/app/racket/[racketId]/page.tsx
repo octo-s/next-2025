@@ -1,48 +1,29 @@
-import { rackets } from '@/data/mock';
-import { notFound } from 'next/navigation'
-import styles from './page.module.css';
+import { RacketDetail } from '@/components/RacketDetail/RacketDetail';
+import { getRacketById } from '@/services/get-racket-by-id';
+import { notFound } from 'next/navigation';
+import { getRackets } from '@/services/get-rackets';
 
-type RacketDetailProps = {
+type RacketPageProps = {
   params: Promise<{ racketId: string }>;
 };
 
-export const generateStaticParams = () => {
-  const idsToGenerate = rackets.slice(0, 3);
+export const generateStaticParams = async () => {
+  const { data: rackets } = await getRackets({ page: 1, limit: 3 });
 
-  return idsToGenerate.map((racket) => ({
+  if (!rackets) return [];
+
+  return rackets.map((racket) => ({
     racketId: racket.id.toString(),
   }));
 };
 
-export default async function RacketDetail({ params }: RacketDetailProps) {
+export default async function RacketPage({ params }: RacketPageProps) {
   const { racketId } = await params;
-  const racket = rackets.find((currentRacket) => currentRacket.id === Number(racketId));
+  const { data: racket } = await getRacketById({ id: racketId });
 
   if (!racket) {
-    notFound()
+    notFound();
   }
 
-  return (
-    <>
-      <h1>{racket.name}</h1>
-      <div className={styles.imageWrapper}>
-        <img src={racket.imageUrl} alt={racket.name} width="300" />
-        <div>
-          <p>
-            <strong>Цена:</strong> €{racket.price}
-          </p>
-          <p>{racket.description}</p>
-          <p>
-            <strong>Модель:</strong> {racket.model}
-          </p>
-          <p>
-            <strong>Год:</strong> {racket.year}
-          </p>
-          <p>
-            <strong>Бренд:</strong> {racket.brand.name}
-          </p>
-        </div>
-      </div>
-    </>
-  );
+  return <RacketDetail racket={racket} />;
 }
